@@ -36,35 +36,33 @@ extension Int {
     public var FNSimple: String {
         let number: String
         if self > 10000000 && self % 1000 == 0 {
-            number = String(self.friendlyDigits)
+            number = self.friendlyDigits.description
             return "\(number)\(self.valueLetter ?? "")"
         } else if self < 1000 || self % 1000 == 0 {
-            number = String(Int(self.friendlyDigits))
+            number = Int(self.friendlyDigits).description
             return "\(number)"
         } else {
-            number = String(self.friendlyDigits)
+            number = self.friendlyDigits.description
             return "\(number)\(self.valueLetter ?? "")"
         }
     }
     
     public var friendlyDigits: Double {
         let divisor: Double
+        
         if self < 1000 {
             divisor = 1.0
-            return (Double(self) / divisor).roundTo(places: 1)
         } else if self < 100000 {
             divisor = 1000.0
-            return (Double(self) / divisor).roundTo(places: 1)
         } else if self < 1000000 {
             divisor = 1000.0
-            return (Double(self) / divisor).roundTo(places: 1)
         } else if self < 10000000 {
             divisor = 1000000.0
-            return (Double(self) / divisor).roundTo(places: 1)
         } else {
             divisor = 1000000.0
-            return (Double(self) / divisor).roundTo(places: 1)
         }
+        
+        return (Double(self) / divisor).roundTo(places: 1)
     }
     
     public var valueLetter: String? {
@@ -78,10 +76,10 @@ extension Int {
 }
 
 // MARK: Double extensions
-
 extension Double {
     func roundTo(places: Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
     }
 }
+
