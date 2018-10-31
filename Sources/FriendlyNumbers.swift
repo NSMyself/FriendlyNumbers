@@ -71,7 +71,8 @@ extension Int {
         switch(self / 1000) {
         case 1..<1000: return "K"
         case 1000..<1000000: return "M"
-        default: return "M"
+        case 1000000..<1000000000: return "B"
+        default: return "B"
         }
     }
 }
